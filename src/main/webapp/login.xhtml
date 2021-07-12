@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough"> 
+
+<h:head>
+	<title>Login</title>
+	<!-- Custom fonts for this template-->
+    <h:outputStylesheet library="webjars" name="font-awesome/5.15.2/css/all.min-jsf.css"></h:outputStylesheet>
+    <h:outputStylesheet library="vendor" name="datatables/dataTables.bootstrap4.min.css"></h:outputStylesheet>
+    
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+    </link>
+
+    <!-- Custom styles for this template-->
+    <h:outputStylesheet library="css" name="sb-admin-2.min.css"></h:outputStylesheet>
+</h:head> 
+<body> 
+	<div class="container">
+		<div class="row justify-content-center mt-4 pt-5 m-auto">
+			<div class="col-5">
+				<div class="card my-5">
+					<div class="card-body p-0">
+						<div class="row">
+							<div class="col">
+								<div class="p-3">
+									<div class="text-center">
+                                        <h3>Welcome Log In Page</h3>
+                                    </div>
+                                    <div class="alert alert-danger #{empty facesContext.messageList ? 'd-none' :''}">
+										<h:messages />
+									</div>
+									<h:form styleClass="form p-3">
+										<div class="form-group">
+											<label > Login ID</label>
+											<h:inputText value="#{loginBean.loginId}"  styleClass="form-control" p:placeholder="Enter Log In ID"/>
+										</div>
+										<div class="form-group">
+											<label>Password</label>
+											<h:inputSecret value="#{loginBean.password}"  styleClass="form-control" p:placeholder="Enter Password"/>
+										</div>
+										<div class="form-group">
+											<h:commandButton action="#{loginBean.login()}" styleClass="btn btn-primary  btn-block" value="login" style="color:#960B33"/>
+										</div>
+									</h:form>	
+								</div>
+							</div>
+						</div>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body> 
+</html>

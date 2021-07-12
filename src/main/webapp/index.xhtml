@@ -1,0 +1,143 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+<ui:composition template="/frontend/template/template.xhtml">
+
+<ui:define name="main-content">
+	<section id="default-home">   
+	    <div class="home">
+	      	<div class="home-img">
+	       	 	<div class="home-text">
+	          		<p class="text-white">Hello, welcome to our shop..</p>
+	          		<h1 class="text-danger text-uppercase fs-1 fw-bold">များစွာသောဖိနပ်များ</h1>
+	          		<h2 class="mt-2">Myanmar, Myitkyina</h2>
+	          		<p class="mt-2 text-white">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+	          		<a href="#portfolio" class="btn bg px-3 mt-3">ဝယ်မယ်</a>
+	        	</div>
+	      	</div>
+	    </div>
+	</section>
+
+	<!-- New Arrival -->
+	<section id="new-arrival">
+	  	<div class="container-lg py-4">
+	    	<div class="row justify-content-center">
+	      		<div class="col-lg-8">
+	        		<div class="section-title text-center">
+	          			<h2 class="fw-bold mb-5">New Arrival</h2>
+	        		</div>
+	      		</div>
+	    	</div>
+	    	<div class="row">
+	    		<div class="owl-carousel owl-theme my-4">
+	    			<ui:repeat var="p" value="#{productBean.products}">
+						<div class="col-md-12 col-sm-6 ">
+	      			 		<ui:include src="/frontend/template/product-caro.xhtml" />
+	      				</div>
+	      			</ui:repeat>
+	      		</div>
+			</div>
+	 	</div>
+	</section>
+	<!-- End New Arrival -->
+
+	<!-- Popular Product -->
+	<section id="product">
+		<div class="container-lg py-4">
+	    	<div class="row justify-content-center">
+	      		<div class="col-lg-8">
+	       		 	<div class="section-title text-center">
+	          			<h2 class="fw-bold mb-5">Popular Product</h2>
+	        		</div>
+	      		</div>
+	    	</div>
+	   		<div class="row">
+	        	<div class="col-md-12 py-5">  	
+	          		<ul class="nav nav-pills mb-3 justify-content-center" id="pills-tab" role="tablist">
+		          		<ui:repeat var="c" value="#{categoryBean.categories}">
+		            		<li class="nav-item" role="presentation">
+		              			<button class="nav-links rounded" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">#{c.name}</button>
+		            		</li>
+		            	</ui:repeat>
+	          		</ul>
+	        	</div>
+	        	<div class="col-md-12 py-5">
+	          		<div class="tab-content p-img" id="pills-tabContent">
+	            		<div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+	              			<div class="row">
+			      				<ui:repeat var="p" value="#{productBean.products}">
+			        				<div class="col-md-4 col-sm-6 mb-2">
+			        					<ui:include src="/frontend/template/product-caro.xhtml" />
+			      					</div>
+			      				</ui:repeat>
+			    			</div>
+	            		</div>
+	          		</div>
+	        	</div>    
+	     	</div>
+		</div>
+	</section>
+	<!-- End popular product -->
+	<!-- Start About -->
+	<section id="about">
+	  <div class="container-lg py-4">
+	    <div class="row justify-content-center">
+	      <div class="col-lg-8">
+	        <div class="section-title text-center">
+	          <h2 class="fw-bold mb-5">About</h2>
+	        </div>
+	      </div>
+	    </div>
+        <div class="row bg-light shadow rounded py-4">
+          <div class="col-md-6 py-4"><h:graphicImage library="img" name="s1.jpg" styleClass="img-fluid w-100 rounded"/></div>
+          <div class="col-md-6 py-4">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Soluta quam saepe corrupti ut nam, ducimus impedit eligendi laboriosam ratione modi suscipit corporis possimus harum in optio tenetur incidunt quidem repudiandae!</div>
+          <div class="col-md-12 text-center py-4"><a href="#" class="btn btn-outline-dark">View More</a></div>
+        </div>
+	  </div>
+	</section>
+	<!-- End About -->
+	<!-- Start -->
+	<section>
+	  <div class="container">
+	    <div class="row justify-content-center py-4">
+	      <div class="col-lg-8">
+	        <div class="section-title text-center">
+	          <h2 class="fw-bold mb-5">Products</h2>
+	        </div>
+	      </div>
+	    </div>
+	    <div class="row">
+	    	<div class="col-md-6">
+	    		<div class="row">
+	    			<div class="col-12 py-1">
+	    				<h:graphicImage library="img" name="shoes.jpeg" styleClass="img-thumbnail w-100 h-100 rounded"/>
+	    			</div>
+	    			<div class="col-12">
+	    				<h:graphicImage library="img" name="shoe1.jpg" styleClass="img-thumbnail h-100 w-100 rounded"/>
+	    			</div>
+	    		</div>
+	    	</div>
+	    	<div class="col-md-6">
+	    		<h:graphicImage library="img" name="s11.jpg" styleClass="img-thumbnail w-100 h-100 rounded"/>
+	    	</div>
+	    </div>
+	  </div>
+	</section>
+	<!-- End -->
+	<section id="about py-3">
+	  <div class="container-lg py-4">
+	    <div class="row justify-content-center">
+	      <div class="col-lg-8">
+	        <div class="section-title text-center">
+	          <h2 class="fw-bold mb-5">Review</h2>
+	        </div>
+	      </div>
+	    </div>    
+	  </div>
+	</section>
+</ui:define>
+</ui:composition>
+</html>

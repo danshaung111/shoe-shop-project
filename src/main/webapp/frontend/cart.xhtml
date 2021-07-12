@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+<ui:composition template="/frontend/template/template.xhtml">
+	<ui:define name="title">Cart</ui:define>
+	<ui:define name="main-content">
+	
+<section class="product-detail">
+	<div class="container">
+		<div class="row">			
+			<div class="col-md-12 #{cartBean.itemCount == 0 ? '' : 'd-none'} text-center my-5">
+				<h2 class="py-5">Your Cart is Empty</h2>
+				<h:link outcome="/index" value="Go to Shopping" styleClass="btn btn-success mx-auto"/>
+			</div>
+			<div class="col-md-12 #{cartBean.itemCount == 0 ? 'd-none' : ''}">
+				<div class="table-responsive ">
+					<h3 class="text-center py-4">Cart Details</h3>
+					<h:form id="cart-info">
+						<h:dataTable value="#{cartBean.order.details}" var="orderItem" styleClass="table table-bordered shadow-sm">
+							<h:column>
+								<f:facet name="header">IMAGE</f:facet>
+								<h:graphicImage library="uploads" name="#{empty orderItem.product.photo ? 'noimage.jpg' : orderItem.product.photo}" width="150px" height="150px"/>
+							</h:column>
+							<h:column>
+								<f:facet name="header">PRODUCT NAME</f:facet>
+								<p>#{orderItem.product.name}</p>
+							</h:column>
+							<h:column>
+								<f:facet name="header">Brand</f:facet>
+								<p>#{orderItem.product.brand.name}</p>
+							</h:column>
+							<h:column>
+								<f:facet name="header">Category</f:facet>
+								<p>#{orderItem.product.category.name}</p>
+							</h:column>
+							<h:column>
+								<f:facet name="header">PRICE</f:facet>
+								<p>#{orderItem.product.price} Ks</p>
+							</h:column>
+							<h:column>
+								<f:facet name="header">QUANITY</f:facet>
+									<div class="">
+				             				<h:commandLink action="#{cartBean.increaseQty(orderItem.product.id)}" styleClass="cart-btn">
+				             					<i class="fas fa-plus"></i>
+				             					<f:ajax render="@form subtotal total" excute="@form"></f:ajax>
+				             				</h:commandLink>       								
+											<h:inputText value="#{orderItem.subQty}" styleClass="qty" size="10">
+												<f:ajax listener="#{cartBean.updateQty()}" render="@form"></f:ajax>											
+											</h:inputText>
+				             				<h:commandLink action="#{cartBean.decreaseQty(orderItem.product.id)}"  styleClass="cart-btn">
+				             					<i class="fas fa-minus"></i>
+				             					<f:ajax render="@form subtotal total" excute="@form"></f:ajax>
+				             				</h:commandLink>       								
+
+									</div>	
+							</h:column>
+							<h:column>
+								<f:facet name="header">TOTAL</f:facet>
+								<p id="qty_change">#{orderItem.subPrice()} Ks</p>
+							</h:column>
+							<h:column>
+								<f:facet name="header">Action</f:facet>
+								<h:commandLink action="#{cartBean.removeFromCart(orderItem)}" styleClass="fas fa-times cross" />
+							</h:column>
+						</h:dataTable>
+					</h:form>				
+				</div>
+				<div class="container-fluid">
+						<div class="row">
+							<div class="col-md-8 py-2">
+								<h:link outcome="/index" value="Continue to Shopping" styleClass="btn btn-success mx-auto"/>
+							</div>
+							<div class="col-md-4 border py-2">
+								<div class="row py-2 px-2">
+									<div class="col-6">SUBTOTAL</div>
+									<div class="col-6"><h:outputText value="#{cartBean.order.totalAmount} Ks" id="subtotal"/></div>
+								</div>
+								<div class="row py-2 px-2">
+									<div class="col-6">TOTAL</div>
+									<div class="col-6"><h:outputText value="#{cartBean.order.totalAmount} Ks" id="total"/></div>
+								</div>
+								<div class="row py-2">
+									<div class="col-12">
+										<div class="d-grid gap-2">
+											<h:link outcome="/frontend/check-out" styleClass="btn btn-dark" value="PROCEED TO CHECK OUT"/>
+										</div>
+									</div>					
+								</div>
+							</div>
+						</div>
+					</div>	
+			</div>	
+		</div>
+	</div>
+</section>
+
+
+	</ui:define>
+</ui:composition>
+</html>

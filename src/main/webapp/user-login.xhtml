@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+<h:head>
+	<title>Login</title>
+	<h:outputStylesheet library="webjars" name="font-awesome/5.15.2/css/all.min-jsf.css"></h:outputStylesheet>
+    <h:outputStylesheet library="css" name="sb-admin-2.min.css"></h:outputStylesheet>
+    <h:outputStylesheet library="vendor" name="datatables/dataTables.bootstrap4.min.css"></h:outputStylesheet>
+    
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet"></link>
+        <h:outputStylesheet library="css" name="main.css"></h:outputStylesheet>
+        <h:outputStylesheet library="css" name="util.css"></h:outputStylesheet>
+    <style>
+    </style>
+</h:head> 
+<body> 
+
+	<div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100">
+				<div class="login100-pic js-tilt">
+				<h:graphicImage library="img" name="img-01.png" styleClass="card-img-top" />
+				</div>
+				<h:form styleClass="login100-form validate-form">
+					<span class="login100-form-title">
+						Member Login
+					</span>
+					<div class="alert alert-danger #{empty facesContext.messageList ? 'd-none' : ''}">
+								<h:messages />
+					</div>
+					<div class="wrap-input100 validate-input">
+						<h:inputText value="#{loginBean.loginId}" styleClass="input100" p:placeholder="email"/>
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-envelope" aria-hidden="true"></i>
+						</span>
+					</div>
+
+					<div class="wrap-input100 validate-input">
+						<h:inputSecret value="#{loginBean.password}" styleClass="input100" p:placeholder="password"/>
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-lock" aria-hidden="true"></i>
+						</span>
+					</div>
+					
+					<div class="container-login100-form-btn">
+						<h:commandButton action="#{loginBean.login()}" value="Log In" styleClass="login100-form-btn"/>
+					</div>
+
+					<div class="text-center p-t-136">
+						Create your Account?
+						<h:link outcome="/register.xhtml">
+			            	<span>register</span>
+			        	</h:link>
+					</div>
+				</h:form>
+			</div>
+		</div>
+	</div>
+
+</body> 
+</html>

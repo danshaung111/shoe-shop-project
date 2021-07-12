@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+<ui:composition template="/frontend/template/template.xhtml">
+	<ui:define name="title">Product Detail</ui:define>
+	<ui:define name="main-content">
+	
+	
+	<section class="product-detail">
+		<div class="container">
+			<div class="row">
+				<div class="colmd-12">
+					<nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+					  <ol class="breadcrumb">
+					    <li class="breadcrumb-item"><h:link outcome="/index.xhtml" styleClass="" aria-current="page">
+				           <span>Home</span>
+				       	</h:link></li>
+					    <li class="breadcrumb-item active" aria-current="page">Product Detail</li>
+					  </ol>
+					</nav>
+				</div>
+			</div>
+		</div>
+		<div class="container shadow-sm bordered-top">	
+			<div class="row py-2">
+				<div class="col-md-6">
+					<h:graphicImage library="uploads" name="#{empty productBean.product.photo ? 'noimage.jpg' : productBean.product.photo}" styleClass="img-fluid " />
+				</div>
+				<div class="col-md-6">
+					<div class="row">
+						<div class="col-10 text-center py-2">
+							<h3>#{productBean.product.name}</h3>
+						</div>
+						<div class="col-2 py-2">
+	              			<h:form>
+	              				<h:commandLink action="#{cartBean.addToCart(productBean.product.id)}" styleClass="btn btn-danger">
+	              					<i class="fas fa-cart-plus"></i>
+	              					<f:ajax render="cart-item-count"></f:ajax>
+	              				</h:commandLink>       								
+	              			</h:form>
+	              		</div>
+						<hr />
+						<div class="col-4 text-center py-2">Brand: <span class="noti-b">#{productBean.product.brand.name}</span></div>
+						<div class="col-4 text-center py-2">Category: <span class="noti-c">#{productBean.product.category.name}</span></div>
+						<div class="col-4 text-center py-2">Price: <span class="noti-c bg-danger">#{productBean.product.price} Ks</span></div>
+						<hr class="my-3"/>
+						<div class="col-10 offset-1 py-2"><p>#{productBean.product.productDetails}</p></div>
+					</div>
+				</div>
+			</div>
+			<div class="row py-2">
+				<div class="d-grid gap-2 col-6 mx-auto">
+					
+				</div>			
+			</div>
+		</div>
+	</section>
+	
+	<!-- Product  -->
+	<!-- New Arrival -->
+	<section id="">
+	  	<div class="container-lg py-4">
+	    	<div class="row justify-content-center">
+	      		<div class="col-lg-8">
+	        		<div class="section-title text-center">
+	          			<h2 class="fw-bold mb-5">New Arrival</h2>
+	        		</div>
+	      		</div>
+	    	</div>
+	    	<div class="row">
+	    		<div class="owl-carousel owl-theme my-4">
+	      			<ui:repeat var="p" value="#{productBean.products}">
+						<div class="col-md-12 col-sm-6 ">
+	      			 		<ui:include src="/frontend/template/product-caro.xhtml" />
+	      				</div>
+	      			</ui:repeat>
+	      		</div>
+			</div>
+	 	</div>
+	</section>
+	<!-- End New Arrival -->
+	</ui:define>
+</ui:composition>
+</html>
